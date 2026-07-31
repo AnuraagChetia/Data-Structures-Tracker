@@ -24,18 +24,29 @@ public class BinaryTreeTraversalGuide {
             // Node root = buildTree(sc);
             // 1 3 5 7 11 17 -1 -1 -1 -1 -1 -1 -1
             Node root = buildFromLevelOrder(sc);
-            System.out.println("Printing the level order traversal");
-            levelOrderTraversal(root);
-            System.out.println("Printing the reverse level order traversal");
-            reverseLevelOrderTraversal(root);
-            System.out.println("Printing the inorder traversal");
-            inorderTraversal(root);
-            System.out.println();
-            System.out.println("Printing the preorder traversal");
-            preorderTraversal(root);
-            System.out.println();
-            System.out.println("Printing the postorder traversal");
-            postorderTraversal(root);
+            // System.out.println("Printing the level order traversal");
+            // levelOrderTraversal(root);
+            // System.out.println("Printing the reverse level order traversal");
+            // reverseLevelOrderTraversal(root);
+            // System.out.println("Printing the inorder traversal");
+            // inorderTraversal(root);
+            // System.out.println();
+            // System.out.println("Printing the preorder traversal");
+            // preorderTraversal(root);
+            // System.out.println();
+            // System.out.println("Printing the postorder traversal");
+            // postorderTraversal(root);
+            // System.out.println();
+            // System.out.println("Printing the inorder traversal through iterative
+            // method");
+            // iterativeInorderTraversal(root);
+            // System.out.println();
+            // System.out.println("Printing the preorder traversal through iterative
+            // method");
+            // iterativePreorderTraversal(root);
+            // System.out.println();
+            System.out.println("Printing the post traversal through iterative method");
+            iterativePostorderTraversal(root);
         }
 
     }
@@ -165,5 +176,54 @@ public class BinaryTreeTraversalGuide {
     }
 
     // Iterative version of inorder, preorder and postorder
+    public static void iterativeInorderTraversal(Node root) {
+        Stack<Node> s = new Stack<>();
+        Node curr = root;
+        while (curr != null || !s.isEmpty()) {
+            while (curr != null) {
+                s.push(curr);
+                curr = curr.left;
+            }
+            curr = s.pop();
+            System.out.print(curr.data + " ");
+            curr = curr.right;
+        }
+    }
 
+    public static void iterativePreorderTraversal(Node root) {
+        Stack<Node> s = new Stack<>();
+        Node curr = root;
+        while (curr != null || !s.isEmpty()) {
+            while (curr != null) {
+                System.out.print(curr.data + " ");
+                s.push(curr);
+                curr = curr.left;
+            }
+            curr = s.pop().right;
+        }
+    }
+
+    public static void iterativePostorderTraversal(Node root) {
+        Stack<Node> s = new Stack<>();
+        Node curr = root;
+        Node lastPrintedNode = null;
+        while (curr != null || !s.isEmpty()) {
+            while (curr != null) {
+                s.push(curr);
+                curr = curr.left;
+            }
+            // LEFT is NULL, so go right, if right is null print
+            // OR
+            // if right is not null and is not printed
+            Node peek = s.peek();
+            if (peek.right == null || peek.right == lastPrintedNode) {
+                System.out.print(peek.data + " ");
+                lastPrintedNode = peek;
+                s.pop();
+                curr = null;
+            } else {
+                curr = peek.right;
+            }
+        }
+    }
 }
