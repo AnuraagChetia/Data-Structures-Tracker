@@ -15,6 +15,9 @@
  */
 
 // Intuition:
+// Start with thinking what is the deciding factor that makes a tree balanced.
+// Here if the difference between height of left sub tree and right subtree at
+// any node is > 1, then it becomes unbalanced. So
 // We need to be sure that the difference between leftHeight and rightHeight of
 // any subtree is <= 1
 // That means we need to check this difference at all subtrees
