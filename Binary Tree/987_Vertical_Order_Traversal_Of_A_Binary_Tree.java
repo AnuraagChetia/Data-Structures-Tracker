@@ -14,6 +14,10 @@
  * }
  */
 
+// "The traversal isn't the difficult part. I need to figure out what
+// information each node needs and how I should organize that information
+// afterward."
+
 // INTUITION:
 //
 // This is basically a BFS problem with additional logic for organizing
