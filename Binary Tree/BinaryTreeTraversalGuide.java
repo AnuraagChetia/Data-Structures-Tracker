@@ -151,6 +151,34 @@ public class BinaryTreeTraversalGuide {
         }
     }
 
+    public static void newReverseLevelOrderTraversal(Node root) {
+        if (root == null)
+            return;
+        Queue<Node> q = new LinkedList<>();
+        Stack<Node> s = new Stack<>();
+        q.offer(root);
+        while (!q.isEmpty()) {
+            int levelSize = q.size();
+            for (int i = 0; i < levelSize; i++) {
+                Node curr = q.poll();
+                s.add(curr);
+                if (curr.left != null)
+                    q.offer(curr.left);
+                if (curr.right != null)
+                    q.offer(curr.right);
+            }
+            if (!q.isEmpty())
+                s.add(null);
+        }
+        while (!s.isEmpty()) {
+            Node curr = s.pop();
+            if (curr == null)
+                System.out.println(" ");
+            else
+                System.out.println(curr.data + " ");
+        }
+    }
+
     public static void inorderTraversal(Node root) {
         if (root == null)
             return;
